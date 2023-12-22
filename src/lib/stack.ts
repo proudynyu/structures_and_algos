@@ -31,12 +31,25 @@ export class StackWithArray<T> {
     return this.items.length;
   }
 
-  public reverse(): T[] {
-    return this.items.reverse();
+  public clone(): StackWithArray<T> {
+    const stack = new StackWithArray<T>()
+
+    for (let i = 0; i <= this.size() - 1; i++) {
+        stack.push(this.items[i])
+    }
+
+    return stack
   }
 
   public to_string(): string {
-    return this.reverse().join('');
+      const cloned = this.clone()
+      let result = ""
+
+      for (let i = 0; i = cloned.size(); i++) {
+          result += `${cloned.pop()}`
+      }
+
+    return result
   }
 }
 
@@ -84,9 +97,24 @@ export class StackWithObject<T> {
     return this.count;
   }
 
-  public reverse(): T[] {
+  public clone() {
+      const stack = new StackWithObject<T>()
+
+      for (let i = 0; i <= this.size() - 1; i++) {
+          stack.push(this.items[i])
+      }
+
+      return stack
   }
 
   public to_string(): string {
+      const cloned = this.clone()
+      let result = ""
+
+      for (let i = 0; i = cloned.size(); i++) {
+          result += `${cloned.pop()}`
+      }
+
+      return result
   }
 }

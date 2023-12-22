@@ -64,19 +64,16 @@ describe('StackWithArray suite', () => {
         expect(stack.size()).toBe(4)
     })
 
-    it('should return the stack items reversed', () => {
+    it("should return the cloned stack", () => {
         const stack = new StackWithArray()
 
         stack.push(1)
         stack.push(2)
-        stack.push(3)
-        stack.push(4)
 
-        stack.reverse()
+        const cloned = stack.clone()
 
-        expect(stack.peek()).toBe(1)
+        expect(cloned.peek()).toBe(stack.peek())
     })
-    
 
     it('should return the stack items in a string', () => {
         const stack = new StackWithArray()
@@ -152,5 +149,29 @@ describe('StackWithObject suite', () => {
         stack.push(4)
 
         expect(stack.size()).toBe(4)
+    })
+    
+    it("should return the cloned stack", () => {
+        const stack = new StackWithObject()
+
+        stack.push(1)
+        stack.push(2)
+
+        const cloned = stack.clone()
+
+        expect(cloned.peek()).toBe(stack.peek())
+    })
+
+    it('should return the stack items in a string', () => {
+        const stack = new StackWithObject()
+
+        stack.push(1)
+        stack.push(2)
+        stack.push(3)
+        stack.push(4)
+
+        const value = stack.to_string()
+
+        expect(value).toBe('4321')
     })
 })
