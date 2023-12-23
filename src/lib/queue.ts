@@ -46,7 +46,7 @@ export class Queue<T> {
     this.lowCount = 0;
   }
 
-  public clone() {
+  public clone(): Queue<T> {
     const queue = new Queue<T>();
 
     for (let i = 0; i <= this.size() - 1; i++) {
