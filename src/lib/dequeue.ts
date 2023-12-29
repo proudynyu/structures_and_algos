@@ -31,8 +31,8 @@ export class Dequeue<T> {
     }
 
     public addBack(element: T): void {
-        this.items[this.count] = element;
-        this.count++;
+        this.items[this.count] = element
+        this.count++ 
     }
 
     public peekFront(): T {
@@ -40,7 +40,7 @@ export class Dequeue<T> {
     }
 
     public peekBack(): T {
-        return this.items[this.count];
+        return this.items[this.count - 1];
     }
 
     public removeFront(): T | undefined {
