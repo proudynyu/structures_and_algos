@@ -1,7 +1,6 @@
 import {expect, it, describe} from 'bun:test';
 
 import {Dequeue} from '@lib/dequeue';
-import exp from 'constants';
 
 describe('Dequeue suite', () => {
     it("should create an empty Dequeue", () => {

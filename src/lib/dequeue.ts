@@ -27,7 +27,6 @@ export class Dequeue<T> {
         }
 
         this.count++;
-        this.lowCount = 0;
     }
 
     public addBack(element: T): void {
@@ -85,7 +84,7 @@ export class Dequeue<T> {
         const dequeue = new Dequeue<T>();
 
         for (let i = 0; i <= this.size() - 1; i++) {
-            dequeue.addFront(this.items[i]);
+            dequeue.addBack(this.items[i]);
         }
 
         return dequeue;
@@ -95,7 +94,7 @@ export class Dequeue<T> {
         const cloned = this.clone();
         let result = "";
 
-        for (let i = 0; (i = cloned.size()); i++) {
+        for (let i = 0; (i <= cloned.size() - 1); i++) {
             result += `${cloned.removeBack()}`;
         }
 
