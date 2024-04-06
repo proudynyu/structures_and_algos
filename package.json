@@ -2,6 +2,9 @@
   "name": "structures_and_algos",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+      "test": "bun test:coverage"
+  },
   "devDependencies": {
     "bun-types": "latest"
   },
