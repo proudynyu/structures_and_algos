@@ -28,6 +28,39 @@ describe('LinkedList suite', () => {
         expect(list.size()).toBe(2)
     })
 
+    it('should return the correct element', () => {
+        const list = new LinkedList<number>()
+
+        list.push(1)
+        list.push(2)
+        list.push(3)
+
+        const elem = list.getElementAt(0)
+        expect(elem?.value).toBe(1)
+    })
+
+    it('should return undefined if the index of the element is less than 0', () => {
+        const list = new LinkedList<number>()
+
+        list.push(1)
+        list.push(2)
+        list.push(3)
+
+        const elem = list.getElementAt(-1)
+        expect(elem).toBeUndefined()
+    })
+
+    it('should return undefined if the index of the element is greater than the list count', () => {
+        const list = new LinkedList<number>()
+
+        list.push(1)
+        list.push(2)
+        list.push(3)
+
+        const elem = list.getElementAt(3)
+        expect(elem).toBeUndefined()
+    })
+
     it('should return the list stringifyed', () => {
         const list = new LinkedList<number>()
 

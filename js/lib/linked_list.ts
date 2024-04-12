@@ -37,11 +37,25 @@ export class LinkedList<T> {
 
     // public insert(element: Node<T>, where: number): void {}
     //
-    // public getElementAt(where: number): Node<T> | undefined {}
-    //
-    // public remove(element: Node<T>): Node<T> {}
-    //
-    // public indexOf(element: Node<T>): Node<T> | undefined {}
+    public getElementAt(index: number): Node<T> | undefined {
+        if (index < 0 || index > this.count - 1) {
+            return undefined
+        }
+
+        let current = this.head
+        let previous;
+        let element;
+        for (let i = 0; i < this.count; i++) {
+            if (i === index) {
+                element = current
+                break
+            }
+            previous = current
+            current = current?.next
+        }
+        
+        return element
+    }
 
     public removeAt(index: number): T | undefined {
         if (index < 0 || index > this.count || this.isEmpty()) {
@@ -79,15 +93,10 @@ export class LinkedList<T> {
 
     public toString(): string {
         let result = ""
-        let current = this.head
-
 
         for (let i = 0; i < this.count; i++) {
-            console.log({ head: this.head, tail: this.tail})
-            if (current?.value) {
-                result += `${current.value}`
-            }
-            current = this.head?.next
+            const elem = this.getElementAt(i)
+            result += String(elem?.value)
         }
 
         return result
