@@ -1,18 +1,17 @@
-local Stack = {
-    items = {},
-    first = nil,
-    last = nil,
-}
+Stack = {}
+Stack.__index = Stack
 
 function Stack.new()
-    return {
-        items = {},
-        first = nil,
-        last = nil,
-    }
+    local self = setmetatable({}, Stack)
+
+    self.items = {}
+    self.first = nil
+    self.last = nil
+
+    return self
 end
 
-function Stack.push(self, item)
+function Stack:push(item)
     local first = self.first
     local last = self.last
 
@@ -29,20 +28,17 @@ function Stack.push(self, item)
     return self.items
 end
 
-function Stack.is_empty(self)
-    if self.first == nil then
-        return true
-    end
-
-    return false
+function Stack:is_empty()
+    return self.first == nil
 end
 
-function Stack.pop(self)
+function Stack:pop()
     if self:is_empty() then
         return nil
     end
 
     local item = self.items[self.last]
+    self.items[self.last] = nil
     self.last = self.last - 1
 
     if self.last < 1 then
@@ -53,33 +49,34 @@ function Stack.pop(self)
     return item
 end
 
-function Stack.peek(self)
+function Stack:peek()
     return self.items[self.last]
 end
 
-function Stack.clear(self)
+function Stack:clear()
     self.items = {}
+    self.first = nil
+    self.last = nil
 end
 
-function Stack.size(self)
+function Stack:size()
     return #self.items
 end
 
-function Stack.clone(self)
+function Stack:clone()
     local stack = Stack.new()
     stack.first = self.first
     stack.last = self.last
-    stack.items = self.items
-
+    stack.items = {table.unpack(self.items)}
     return stack
 end
 
-function Stack.to_string(self)
-    local stack = self.clone(self)
+function Stack:to_string()
+    local stack = self:clone()
     local result = ""
 
-    for _ = 1, self.size(self), 1 do
-        local item = stack.pop(stack)
+    while not stack:is_empty() do
+        local item = stack:pop()
         if item ~= nil then
             result = result .. tostring(item)
         end
